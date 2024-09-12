@@ -26,14 +26,9 @@ app.get('/contact', (req, res) => {
 });
 
 app.post('/contact', (req, res) => {
-
-    console.log(req.body);
     if(!req.body.name || !req.body.email || !req.body.message)
     {
-        return res.status(400).json({
-            status: "error",
-            message: "Please fill in all fields."
-        })
+        return res.status(400).redirect('/contact');
     }
 
     // Create a transporter object
@@ -59,13 +54,10 @@ app.post('/contact', (req, res) => {
     transporter.sendMail(mailOptions, (error, info) =>{
         if (error) {
             console.log('Error:' + error);
-            return res.status(500).json({ status: 'error', message: 'Failed to send email due to server error.' });
+            res.status(500).redirect("/contact");
         } else {
             console.log('Email sent: ' + info.response);
-            return res.status(200).json({
-                        status: 'success',
-                        message: 'Email successfully sent'
-                    });
+            res.status(200).redirect("/contact");
         }
     });
 });

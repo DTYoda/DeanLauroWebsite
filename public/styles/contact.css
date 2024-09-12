@@ -102,6 +102,7 @@ img {
 .homebody {
     height:100vh;
     margin: 0;
+    background-color: black;
 }
 
 .outer-homepage {
