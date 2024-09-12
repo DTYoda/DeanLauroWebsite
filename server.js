@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-    console.log("Get");
     res.sendFile(__dirname + "/views/contact.html");
 });
 
