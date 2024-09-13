@@ -3,9 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Portfolio</title>
+        <title><%= project.name %></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/styles/portfolio.css">
+        <link rel="stylesheet" href="/styles/project.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
     </head>
     <body class="homebody">
         <div class="outer-homepage">
@@ -18,20 +21,17 @@
             </div>
             <div class="background">
                 <div class="background-text">
-                    <p class="background-text-main">PORTFOLIO</p>
-                    <p class="background-text-sub">Full selection of my completed works</p>
+                    <p class="background-text-main"><%= project.name %></p>
                 </div>
-                <div class="projects">
-                    <div class="project">
-                        <p class="project-text">The Crash EP</p>
-                    </div>
-                    <div class="project"></div>
-                    <div class="project"></div>
-                    <div class="project"></div>
-                    <div class="project"></div>
-                    <div class="project"></div>
-                    <div class="project"></div>
-                    <div class="project"></div>
+                <div class="description-text">
+                    <h3>Project Type</h3>
+                    <p><%= project.type %></p>
+                    <h3>Date</h3>
+                    <p><%= project.date %></p>
+                    <h3>Link</h3>
+                    <p><a href="<%= project.link %>"><%= project.name %></a></p>
+                    <h3>Description</h3>
+                    <p><%= project.description %></p>
                 </div>
             </div>
             <div class="footer">

@@ -1,0 +1,204 @@
+.homebody {
+    height:100vh;
+    margin: 0;
+    background-color: black;
+    padding: 0;
+}
+
+.outer-homepage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+}
+
+.navbar {
+    background-color: black;
+    flex-basis: 100px;
+    width: 100%;;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: space-between;
+
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.nav-end {
+    padding-right: 20px;
+}
+
+.nav-logo {
+    padding-left: 20px;
+    font-size: 30px;
+    font-family: "Cinzel", serif;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.nav-item {
+    margin: 10px;
+}
+
+.nav-button {
+    font-family: "Cinzel", sans-serif;
+}
+
+.background {
+    display: flex;
+    flex-direction: column;
+
+    background-color: black;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    margin-top: 30px;
+    
+    flex-grow: 1;
+    font-family: "Cinzel", serif;
+
+}
+
+.projects {
+
+    width: 90%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.project {
+    width: 500px;
+    height: 500px;
+    flex-shrink: 0;
+
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-text {
+    color: green;
+    opacity: 0;
+}
+
+.background > p {
+    padding: 0;
+    color: white;
+    text-align: center;
+}
+
+.background-text-main {
+    color: white;
+    font-size: 4vw;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    padding: 0;
+    font-family: "Cinzel", serif;
+    font-weight: lighter;
+    opacity: 0;
+}
+
+.background-text-sub {
+    text-align: center;
+    color: white;
+    font-size: 1vw;
+    font-family: "Cinzel", serif;
+    margin:50px;
+    opacity: 0;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: black;
+    flex-basis: 60px;
+    text-align: center;
+}
+.footer-text {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 10px;
+}
+
+.navbar a {
+    color:white;
+    text-decoration: none;
+}
+
+.description-text {
+    font-family: "Cinzel", serif;
+    color:white;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.description-text h3 {
+    font-size: 1.5vw;
+}
+
+.description-text p {
+    font-size: 1vw;
+}
+
+@media screen and (max-width: 1700px) and (min-width: 1150px) {
+    .background-text-main {
+        font-size: 6vw;
+    }
+    
+    .background-text-sub {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 1150px) and (min-width: 700px) {
+    .background-text-main {
+        font-size: 8vw;
+    }
+    
+    .background-text-sub {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .background-text-main {
+        font-size: 10vw;
+    }
+    
+    .background-text-sub {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .project {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .nav-end {
+        padding-right: 0px;
+    }
+
+    .nav-logo {
+        padding: 5px 0px 5px 5px;
+        font-size: 20px;
+        font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+        font-weight: lighter;
+        margin: 0;
+    }
+}

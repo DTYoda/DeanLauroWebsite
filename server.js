@@ -4,13 +4,24 @@ import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import path from "path";
 import nodemailer from 'nodemailer';
+import sqlite3 from 'sqlite3';
+
+const db = new sqlite3.Database('projects.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err && err.code == "SQLITE_CANTOPEN") {
+        return;
+        } else if (err) {
+            console.log("Getting error " + err);
+            exit(1);
+    }
+});
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
 const app = express();
 const port = 3000;
+
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -62,9 +73,102 @@ app.post('/contact', (req, res) => {
 });
 
 app.get('/portfolio', (req, res) => {
-    res.sendFile(__dirname + "/views/portfolio.html");
+    db.all("SELECT * FROM projects", {}, (err, rows) => {
+        if(!err && rows.length != 0)
+        {
+            res.render("portfolio.ejs", {projects: rows});
+            return;
+        }
+        else
+        {
+            res.redirect("/");
+            return;
+        }
+    });
+});
+
+app.get("/project", (req, res) => {
+    db.get("SELECT * FROM projects WHERE name = $name;", {$name: req.query.name}, (err, row) => {
+        if(!err && !(row == null))
+        {
+            res.render("project.ejs", {project: row});
+            return;
+        }
+        else
+        {
+            res.redirect("/portfolio");
+            return;
+        }
+    });
+});
+
+app.get("/create", (req, res) => {
+    res.sendFile(__dirname + "/views/create.html");
+});
+
+app.post("/create", async (req, res) => {
+    if(req.body.oldName)
+    {
+        let i = 0;
+        for(let variable of Object.keys(req.body))
+        {
+            if(req.body[variable] != "" && variable != "oldName")
+            {
+                i++;
+                db.run("UPDATE projects SET " + variable + " = $newValue WHERE name = $oldName;", {
+                    $newValue: req.body[variable],
+                    $oldName: req.body.oldName
+                }, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        
+                    }
+                });
+            }
+        }
+        if (i == 0)
+        {
+            db.run("DELETE FROM projects WHERE name = $oldName;", {
+                $oldName: req.body.oldName
+            }, (err) => {
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    
+                }
+            });
+        }
+        return res.redirect("/create");
+    }
+    else if (req.body.name && req.body.description && req.body.link && req.body.type && req.body.date && req.body.image)
+    {
+        db.run("INSERT INTO projects (name, type, date, link, description, image) VALUES ($name, $type, $date, $link, $description, $image);", {
+            $name: req.body.name,
+            $type: req.body.type,
+            $date: req.body.date,
+            $link: req.body.link,
+            $description: req.body.description,
+            $image: req.body.image
+        }, (err) => {
+            if(err)
+            {
+                return res.status(500).send(err);
+            }
+            else
+            {
+                return res.redirect("/portfolio");
+            }
+        });
+    }
+    else 
+    {
+        return res.status(400).redirect("/portfolio");
+    }
 });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+

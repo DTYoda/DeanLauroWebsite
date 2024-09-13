@@ -131,7 +131,7 @@ img {
 .nav-logo {
     padding-left: 20px;
     font-size: 30px;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+    font-family: "Cinzel", serif;
     font-weight: lighter;
 }
 
@@ -140,7 +140,7 @@ img {
 }
 
 .nav-button {
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, sans-serif;
+    font-family: "Cinzel", serif;
 }
 
 .background {
@@ -158,7 +158,7 @@ img {
     background-position: center;
     
     flex-grow: 1;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, sans-serif;
+    font-family: "Cinzel", serif;
 
 }
 
@@ -175,14 +175,14 @@ img {
 .background-text-main {
     font-size: 6vw;
     letter-spacing: 2vw;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+    font-family: "Cinzel", serif;
     font-weight: lighter;
 }
 
 .background-text-sub {
     font-size: 2vw;
     letter-spacing: 6px;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+    font-family: "Cinzel", serif;
 }
 
 .socials {

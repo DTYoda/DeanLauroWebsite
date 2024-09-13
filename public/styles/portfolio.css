@@ -33,7 +33,7 @@
 .nav-logo {
     padding-left: 20px;
     font-size: 30px;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+    font-family: "Cinzel", serif;
     font-weight: lighter;
     margin: 0;
 }
@@ -43,7 +43,7 @@
 }
 
 .nav-button {
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, sans-serif;
+    font-family: "Cinzel", serif;
 }
 
 .background {
@@ -61,7 +61,7 @@
     margin-top: 30px;
     
     flex-grow: 1;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, sans-serif;
+    font-family: "Cinzel", serif;
 
 }
 
@@ -86,11 +86,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-repeat: no-repeat;
+    background-position: cover;
 }
 
 .project-text {
     color: green;
     opacity: 0;
+    z-index: 2;
+    filter: brightness(100000);
 }
 
 .background > p {
@@ -103,7 +108,7 @@
     color: white;
     font-size: 4vw;
     margin-bottom: 20px;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+    font-family: "Cinzel", serif;
     font-weight: lighter;
     text-align: center;
     opacity: 0;
@@ -113,7 +118,7 @@
     text-align: center;
     color: white;
     font-size: 1vw;
-    font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+    font-family: "Cinzel", serif;
     margin:0;
     opacity: 0;
 }
