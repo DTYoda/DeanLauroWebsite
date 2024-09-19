@@ -48,7 +48,8 @@
 
 .background {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
 
     background-color: black;
     width: 100%;
@@ -61,6 +62,26 @@
     flex-grow: 1;
     font-family: "Cinzel", serif;
 
+}
+
+.left {
+    width: 100%;
+    text-align: left;
+    padding-right: 10px;
+    margin-left: 50px;
+}
+
+.right {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right img {
+    width: 40vw;
+    height: 40vw;
+    margin-right: 100px;
 }
 
 .projects {
@@ -101,7 +122,6 @@
     color: white;
     font-size: 4vw;
     margin-bottom: 20px;
-    margin-left: 50px;
     padding: 0;
     font-family: "Cinzel", serif;
     font-weight: lighter;
@@ -142,16 +162,15 @@
 .description-text {
     font-family: "Cinzel", serif;
     color:white;
-    width: 50%;
-    margin-left: 50px;
+    width: 100%;
 }
 
 .description-text h3 {
-    font-size: 1.5vw;
+    font-size: 30px;
 }
 
 .description-text p {
-    font-size: 1vw;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 1700px) and (min-width: 1150px) {
@@ -175,12 +194,62 @@
 }
 
 @media screen and (max-width: 700px) {
+
+    .left {
+        padding: 0;
+        margin: 0;
+    }
+
+    .right {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .right img {
+        width: 90vw;
+        height: 90vw;
+        margin: 0px;
+    }
+
+    .description-text h3 {
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    .description-text p {
+        font-size: 20px;
+        text-align: center;
+    }
+    
     .background-text-main {
         font-size: 10vw;
+        text-align: center;
     }
     
     .background-text-sub {
         font-size: 5vw;
+    }
+
+    .background {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+        background-color: black;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    
+        margin-top: 30px;
+        
+        flex-grow: 1;
+        font-family: "Cinzel", serif;
+    
     }
 }
 

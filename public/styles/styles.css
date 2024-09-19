@@ -104,3 +104,52 @@
     color:white;
     text-decoration: none;
 }
+
+@media screen and (max-width: 1700px) and (min-width: 1150px) {
+    .background-text-main {
+        font-size: 6vw;
+    }
+    
+    .background-text-sub {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 1150px) and (min-width: 700px) {
+    .background-text-main {
+        font-size: 8vw;
+    }
+    
+    .background-text-sub {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .background-text-main {
+        font-size: 10vw;
+    }
+    
+    .background-text-sub {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .project {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .nav-end {
+        padding-right: 0px;
+    }
+
+    .nav-logo {
+        padding: 5px 0px 5px 5px;
+        font-size: 20px;
+        font-family: nimbus-sans-tw01con, nimbus-sans-tw05con, serif;
+        font-weight: lighter;
+        margin: 0;
+    }
+}
