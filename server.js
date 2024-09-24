@@ -5,6 +5,11 @@ import bodyParser from 'body-parser';
 import path from "path";
 import nodemailer from 'nodemailer';
 import sqlite3 from 'sqlite3';
+import https from "https";
+import http from "http";
+import fs from "fs";
+
+
 
 const db = new sqlite3.Database('projects.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err && err.code == "SQLITE_CANTOPEN") {
@@ -17,6 +22,10 @@ const db = new sqlite3.Database('projects.db', sqlite3.OPEN_READWRITE, (err) => 
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+var privateKey  = fs.readFileSync(path.join(__dirname, "cert", "key.pem"));
+var certificate = fs.readFileSync(path.join(__dirname, "cert", "cert.pem"));
+var credentials = {key: privateKey, cert: certificate, passphrase: 'hkaras1121'};
 
 const app = express();
 const port = 3000;
@@ -167,8 +176,10 @@ app.post("/create", async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(8080);
+httpsServer.listen(8443);
 
 
