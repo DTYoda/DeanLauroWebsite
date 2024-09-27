@@ -14,6 +14,7 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "mailtrap": "^3.4.0",
     "nodemailer": "^6.9.15",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"

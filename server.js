@@ -23,9 +23,9 @@ const db = new sqlite3.Database('projects.db', sqlite3.OPEN_READWRITE, (err) => 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-var privateKey  = fs.readFileSync(path.join(__dirname, "cert", "key.pem"));
-var certificate = fs.readFileSync(path.join(__dirname, "cert", "cert.pem"));
-var credentials = {key: privateKey, cert: certificate, passphrase: 'hkaras1121'};
+var privateKey  = fs.readFileSync('cert/key.pem', 'utf8');
+var certificate = fs.readFileSync('cert/cert.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 
 const app = express();
 const port = 3000;
@@ -41,10 +41,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
+    console.log("contact");
     res.sendFile(__dirname + "/views/contact.html");
 });
 
 app.post('/contact', (req, res) => {
+    console.log("contact");
     if(!req.body.name || !req.body.email || !req.body.message)
     {
         return res.status(400).redirect('/contact');
@@ -56,14 +58,14 @@ app.post('/contact', (req, res) => {
         port: 587,
         secure: false, // use false for STARTTLS; true for SSL on port 465
         auth: {
-        user: 'api',
-        pass: '55506db695be910fb89e27b2bfc1159c',
+            user: 'api',
+            pass: 'aee084df2ad00fe7e31e96b4f7d960b3',
         }
     });
 
-    // Configure the mailoptions object
+    // Configure the mailoptions objects
     const mailOptions = {
-        from: "hkaras1121@demomailtrap.com",
+        from: "contact@deanlauro.com",
         to: "DeanLauroBooking@gmail.com",
         subject: "Message from " + req.body.name + ": " + req.body.email,
         text: req.body.message
@@ -73,12 +75,49 @@ app.post('/contact', (req, res) => {
     transporter.sendMail(mailOptions, (error, info) =>{
         if (error) {
             console.log('Error:' + error);
-            res.status(500).redirect("/contact");
+            res.status(500).json("ERROR IN SENDING MESSAGE" + error);
         } else {
             console.log('Email sent: ' + info.response);
-            res.status(200).redirect("/contact");
+            SendNextEmail();
         }
     });
+
+    const SendNextEmail = () => {
+
+        const transporter2 = nodemailer.createTransport({
+            host: 'live.smtp.mailtrap.io',
+            port: 587,
+            secure: false, // use false for STARTTLS; true for SSL on port 465
+            auth: {
+                user: 'api',
+                pass: 'aee084df2ad00fe7e31e96b4f7d960b3',
+            }
+        });
+    
+        // Configure the mailoptions object
+        const mailOptions2 = {
+            from: "contact@deanlauro.com",
+            to: req.body.email,
+            subject: "Thanks For Reaching Out!",
+            text: "This email is confirming that your message has been receieved, and I will respond shortly! Thank you for reaching out, the message recieved was: " + req.body.message,
+            template_uuid: "2a9f9e44-3b02-46e4-9f3f-5c98a36c941d",
+            template_variables: {
+                "name": "Test_Name",
+                "message": req.body.message
+            }
+        };
+    
+        // Send the email
+        transporter2.sendMail(mailOptions2, (error, info) =>{
+            if (error) {
+                console.log('Error:' + error);
+                res.status(500).json("ERROR IN SENDING MESSAGE" + error);
+            } else {
+                console.log('Email sent: ' + info.response);
+                return res.redirect("/contact");
+            }
+        });
+    }
 });
 
 app.get('/portfolio', (req, res) => {

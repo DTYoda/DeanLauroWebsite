@@ -26,6 +26,11 @@
     color: white;
 }
 
+.project-link:visited {
+    color:white;
+    text-decoration: none;
+}
+
 .nav-end {
     padding-right: 20px;
 }
