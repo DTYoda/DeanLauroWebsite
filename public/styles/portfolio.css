@@ -15,7 +15,7 @@
 
 .navbar {
     background-color: black;
-    flex-basis: 100px;
+    flex-basis: 40px;
     width: 100%;;
     flex-grow: 0;
     flex-shrink: 0;
@@ -24,6 +24,18 @@
     display: flex;
     align-items: center;
     color: white;
+}
+
+.notification-bar {
+    background-color: black;
+    color: white;
+    height: 30px;
+    display:flex;
+    justify-content: center;
+    width: 100vw;
+}
+.notification-bar a {
+    color:white;
 }
 
 .nav-end {
